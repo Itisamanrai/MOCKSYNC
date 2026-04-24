@@ -3,9 +3,11 @@ const router = require("./src/routes/index");
 const express = require("express"); // express handles API
 const http = require("http");  // it is needed for socket.io
 const cors = require("cors");
+const path = require("path");
 const { Server } = require("socket.io");
+const { connectDB } = require("./src/config/db");
 
-require("dotenv").config();
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const PORT = process.env.PORT || 3000;
 
@@ -37,6 +39,16 @@ const io = new Server(server, {    // join of room in socket io is implement
 
 registerSocketHandlers(io);
 
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+    try {
+        await connectDB();
+        server.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("[startup] Failed to start server:", error.message);
+        process.exit(1);
+    }
+};
+
+startServer();

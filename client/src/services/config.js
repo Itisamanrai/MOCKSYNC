@@ -1,0 +1,7 @@
+const defaultApiBaseUrl = "http://localhost:3000";
+
+export const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL?.trim() || defaultApiBaseUrl;
+
+export const SOCKET_URL =
+  import.meta.env.VITE_SOCKET_URL?.trim() || API_BASE_URL;

@@ -1,5 +1,12 @@
 .DS_Store
 
+# Dependencies
+node_modules/
+server/node_modules/
+client/node_modules/
+
 # Server environment files
+.env
+.env.*
 server/.env
 server/.env.*

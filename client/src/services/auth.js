@@ -1,5 +1,7 @@
 const TOKEN_KEY = "mocksync_token";
-const API_BASE = "http://localhost:3000/auth";
+import { API_BASE_URL } from "./config";
+
+const API_BASE = `${API_BASE_URL}/auth`;
 
 export const signupUser = async (payload) => {
   const res = await fetch(`${API_BASE}/signup`, {

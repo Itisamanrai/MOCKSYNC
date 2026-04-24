@@ -1,6 +1,7 @@
 import { getToken } from "./auth";
+import { API_BASE_URL } from "./config";
 
-const API_BASE = "http://localhost:3000/ai";
+const API_BASE = `${API_BASE_URL}/ai`;
 
 export const getAIFeedback = async (text) => {
   const token = getToken();
